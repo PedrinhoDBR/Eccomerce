@@ -1,0 +1,47 @@
+<main class="shell">
+  <header class="topbar">
+    <div>
+      <p class="eyebrow">E-commerce</p>
+      <h1>Orders</h1>
+    </div>
+    <a routerLink="/" class="nav-link">Storefront</a>
+  </header>
+
+  @if (error()) {
+    <section class="alert">{{ error() }}</section>
+  }
+
+  @if (loading()) {
+    <app-empty-state title="Loading orders" message="Waiting for the backend response." />
+  } @else if (orders().length === 0) {
+    <app-empty-state title="No orders" message="Checkout orders will appear here." />
+  } @else {
+    <section class="orders-list">
+      @for (order of orders(); track order.id) {
+        <article class="order-card">
+          <header>
+            <div>
+              <strong>{{ order.customerName }}</strong>
+              <span>{{ order.customerEmail }}</span>
+            </div>
+            <div class="order-meta">
+              <span>{{ order.createdAt | date: 'short' }}</span>
+              <strong>{{ order.total | currency }}</strong>
+            </div>
+          </header>
+
+          <div class="status">{{ order.status }}</div>
+
+          <div class="items">
+            @for (item of order.items; track item.productId) {
+              <div>
+                <span>{{ item.productName }} x {{ item.quantity }}</span>
+                <strong>{{ item.subtotal | currency }}</strong>
+              </div>
+            }
+          </div>
+        </article>
+      }
+    </section>
+  }
+</main>

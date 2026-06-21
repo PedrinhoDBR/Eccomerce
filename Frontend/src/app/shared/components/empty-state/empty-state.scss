@@ -1,0 +1,16 @@
+.empty-state {
+  border: 1px dashed #aab4c0;
+  border-radius: 8px;
+  color: #526071;
+  display: grid;
+  gap: 6px;
+  min-height: 120px;
+  padding: 24px;
+  place-content: center;
+  text-align: center;
+}
+
+.empty-state strong {
+  color: #1f2937;
+  font-size: 1rem;
+}

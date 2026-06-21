@@ -1,0 +1,37 @@
+[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mUnable to initialize JavaScript cache storage.[0m [1m[35m[plugin angular-compiler][0m
+
+  No native build was found for platform=win32 arch=x64 runtime=electron abi=127 uv=1 libc=glibc node=22.15.0
+  This will not affect the build output content but may result in slower builds.
+
+[39m[22m
+[1m[33m[33mThe project root contains the "#" character ([36mC:/Projetos/Study_C#/Frontend/.angular/vite-root/Frontend[33m), which may not work when running Vite. Consider renaming the directory / file to remove the characters.[33m[39m[22m
+[1m[31m[31mVite Error, /@fs/C:/Projetos/Study_C#/Frontend/.angular/cache/20.3.29/Frontend/vite/deps/zone__js.js?v=081e8c3d optimized info should be defined[31m[39m[22m
+[1m[31m[31mVite Error, /@fs/C:/Projetos/Study_C#/Frontend/.angular/cache/20.3.29/Frontend/vite/deps/@angular_platform-browser.js?v=081e8c3d optimized info should be defined[31m[39m[22m
+[1m[31m[31mVite Error, /@fs/C:/Projetos/Study_C#/Frontend/.angular/cache/20.3.29/Frontend/vite/deps/@angular_core.js?v=081e8c3d optimized info should be defined[31m[39m[22m
+[1m[31m[31mVite Error, /@fs/C:/Projetos/Study_C#/Frontend/.angular/cache/20.3.29/Frontend/vite/deps/@angular_common_http.js?v=081e8c3d optimized info should be defined[31m[39m[22m
+[1m[31m[31mVite Error, /@fs/C:/Projetos/Study_C#/Frontend/.angular/cache/20.3.29/Frontend/vite/deps/@angular_router.js?v=081e8c3d optimized info should be defined[31m[39m[22m
+[1m[31m[31mVite Error, /@fs/C:/Projetos/Study_C#/Frontend/.angular/cache/20.3.29/Frontend/vite/deps/@angular_common.js?v=081e8c3d optimized info should be defined[31m[39m[22m
+[1m[31m[31mVite Error, /@fs/C:/Projetos/Study_C#/Frontend/.angular/cache/20.3.29/Frontend/vite/deps/@angular_core.js?v=081e8c3d optimized info should be defined[31m[39m[22m
+[1m[31m[31mVite Error, /@fs/C:/Projetos/Study_C#/Frontend/.angular/cache/20.3.29/Frontend/vite/deps/@angular_router.js?v=081e8c3d optimized info should be defined[31m[39m[22m
+[1m[31m[31mVite Error, /@fs/C:/Projetos/Study_C#/Frontend/.angular/cache/20.3.29/Frontend/vite/deps/@angular_core.js?v=081e8c3d optimized info should be defined[31m[39m[22m
+[1m[31m[31mVite Error, /@fs/C:/Projetos/Study_C#/Frontend/.angular/cache/20.3.29/Frontend/vite/deps/@angular_core.js?v=081e8c3d optimized info should be defined[31m[39m[22m
+[1m[31m[31mVite Error, /@fs/C:/Projetos/Study_C#/Frontend/.angular/cache/20.3.29/Frontend/vite/deps/@angular_core.js?v=081e8c3d optimized info should be defined[31m[39m[22m
+[1m[31m[31mVite Error, /@fs/C:/Projetos/Study_C#/Frontend/.angular/cache/20.3.29/Frontend/vite/deps/@angular_core.js?v=081e8c3d optimized info should be defined[31m[39m[22m
+[1m[31m[31mVite Error, /@fs/C:/Projetos/Study_C#/Frontend/.angular/cache/20.3.29/Frontend/vite/deps/@angular_core.js?v=081e8c3d optimized info should be defined[31m[39m[22m
+[1m[31m[31mVite Error, /@fs/C:/Projetos/Study_C#/Frontend/.angular/cache/20.3.29/Frontend/vite/deps/@angular_common_http.js?v=081e8c3d optimized info should be defined[31m[39m[22m
+[1m[31m[31mVite Error, /@fs/C:/Projetos/Study_C#/Frontend/.angular/cache/20.3.29/Frontend/vite/deps/@angular_common.js?v=081e8c3d optimized info should be defined[31m[39m[22m
+[1m[31m[31mVite Error, /@fs/C:/Projetos/Study_C#/Frontend/.angular/cache/20.3.29/Frontend/vite/deps/@angular_common.js?v=081e8c3d optimized info should be defined[31m[39m[22m
+[1m[31m[31mVite Error, /@fs/C:/Projetos/Study_C#/Frontend/.angular/cache/20.3.29/Frontend/vite/deps/@angular_core.js?v=081e8c3d optimized info should be defined[31m[39m[22m
+[1m[31m[31mVite Error, /@fs/C:/Projetos/Study_C#/Frontend/.angular/cache/20.3.29/Frontend/vite/deps/@angular_forms.js?v=081e8c3d optimized info should be defined[31m[39m[22m
+[1m[31m[31mVite Error, /@fs/C:/Projetos/Study_C#/Frontend/.angular/cache/20.3.29/Frontend/vite/deps/@angular_router.js?v=081e8c3d optimized info should be defined[31m[39m[22m
+[1m[31m[31mVite Error, /@fs/C:/Projetos/Study_C#/Frontend/.angular/cache/20.3.29/Frontend/vite/deps/@angular_core.js?v=081e8c3d optimized info should be defined[31m[39m[22m
+[1m[31m[31mVite Error, /@fs/C:/Projetos/Study_C#/Frontend/.angular/cache/20.3.29/Frontend/vite/deps/@angular_core.js?v=081e8c3d optimized info should be defined[31m[39m[22m
+[1m[31m[31mVite Error, /@fs/C:/Projetos/Study_C#/Frontend/.angular/cache/20.3.29/Frontend/vite/deps/@angular_core.js?v=081e8c3d optimized info should be defined[31m[39m[22m
+[1m[31m[31mVite Error, /@fs/C:/Projetos/Study_C#/Frontend/.angular/cache/20.3.29/Frontend/vite/deps/@angular_core.js?v=081e8c3d optimized info should be defined[31m[39m[22m
+[1m[31m[31mVite Error, /@fs/C:/Projetos/Study_C#/Frontend/.angular/cache/20.3.29/Frontend/vite/deps/@angular_common_http.js?v=081e8c3d optimized info should be defined[31m[39m[22m
+[1m[31m[31mVite Error, /@fs/C:/Projetos/Study_C#/Frontend/.angular/cache/20.3.29/Frontend/vite/deps/@angular_core.js?v=081e8c3d optimized info should be defined[31m[39m[22m
+[1m[31m[31mVite Error, /@fs/C:/Projetos/Study_C#/Frontend/.angular/cache/20.3.29/Frontend/vite/deps/@angular_common.js?v=081e8c3d optimized info should be defined[31m[39m[22m
+[1m[31m[31mVite Error, /@fs/C:/Projetos/Study_C#/Frontend/.angular/cache/20.3.29/Frontend/vite/deps/@angular_forms.js?v=081e8c3d optimized info should be defined[31m[39m[22m
+[1m[31m[31mVite Error, /@fs/C:/Projetos/Study_C#/Frontend/.angular/cache/20.3.29/Frontend/vite/deps/@angular_core.js?v=081e8c3d optimized info should be defined[31m[39m[22m
+[1m[31m[31mVite Error, /@fs/C:/Projetos/Study_C#/Frontend/.angular/cache/20.3.29/Frontend/vite/deps/@angular_router.js?v=081e8c3d optimized info should be defined[31m[39m[22m
+[1m[31m[31mVite Error, /@fs/C:/Projetos/Study_C#/Frontend/.angular/cache/20.3.29/Frontend/vite/deps/@angular_core.js?v=081e8c3d optimized info should be defined[31m[39m[22m
