@@ -1,6 +1,8 @@
 using Ecommerce.Application.Contracts;
 using Ecommerce.Application.Services;
 using Ecommerce.Infrastructure.Repositories;
+using Ecommerce.Infrastructure.Security;
+using LiteDB;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,8 +10,11 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddSingleton<IProductRepository, InMemoryProductRepository>();
-builder.Services.AddSingleton<IOrderRepository, InMemoryOrderRepository>();
+builder.Services.AddSingleton(_ => new LiteDatabase("meubanco.db"));
+builder.Services.AddSingleton<IProductRepository, LiteDbProductRepository>();
+builder.Services.AddSingleton<IOrderRepository, LiteDbOrderRepository>();
+builder.Services.AddSingleton<AdminAuthService>();
+builder.Services.AddScoped<AdminAuthorizationFilter>();
 builder.Services.AddScoped<CatalogService>();
 builder.Services.AddScoped<CheckoutService>();
 

@@ -21,6 +21,8 @@ internal static class OrderMapping
             order.Id,
             order.Customer.FullName,
             order.Customer.Email,
+            order.Customer.Address,
+            order.Customer.Phone,
             order.CreatedAt,
             order.Status.ToString(),
             order.Total.Amount,

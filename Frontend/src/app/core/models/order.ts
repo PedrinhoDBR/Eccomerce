@@ -10,6 +10,8 @@ export interface Order {
   id: string;
   customerName: string;
   customerEmail: string;
+  address: string;
+  phone: string;
   createdAt: string;
   status: string;
   total: number;

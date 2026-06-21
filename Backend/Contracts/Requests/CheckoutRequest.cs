@@ -6,4 +6,6 @@ namespace Ecommerce.Contracts.Requests;
 public sealed record CheckoutRequest(
     string CustomerName,
     string CustomerEmail,
+    string Address,
+    string Phone,
     IReadOnlyCollection<CheckoutItemRequest> Items);

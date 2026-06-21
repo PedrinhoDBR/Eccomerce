@@ -25,7 +25,7 @@ public sealed class CheckoutController : ControllerBase
     {
         try
         {
-            var customer = new Customer(request.CustomerName, request.CustomerEmail);
+            var customer = new Customer(request.CustomerName, request.CustomerEmail, request.Address, request.Phone);
             var cart = new ShoppingCart();
 
             foreach (var item in request.Items)

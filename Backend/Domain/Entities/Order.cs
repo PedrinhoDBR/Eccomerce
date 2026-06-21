@@ -11,6 +11,11 @@ public sealed class Order
     private readonly List<OrderItem> _items;
 
     public Order(Customer customer, IEnumerable<OrderItem> items)
+        : this(customer, items, Guid.NewGuid(), DateTime.UtcNow, OrderStatus.Created)
+    {
+    }
+
+    public Order(Customer customer, IEnumerable<OrderItem> items, Guid id, DateTime createdAt, OrderStatus status)
     {
         _items = items.ToList();
 
@@ -19,10 +24,10 @@ public sealed class Order
             throw new InvalidOperationException("The order must contain at least one item.");
         }
 
-        Id = Guid.NewGuid();
+        Id = id;
         Customer = customer;
-        CreatedAt = DateTime.UtcNow;
-        Status = OrderStatus.Created;
+        CreatedAt = createdAt;
+        Status = status;
     }
 
     public Guid Id { get; }

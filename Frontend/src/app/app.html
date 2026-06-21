@@ -1,1 +1,20 @@
+<header class="site-header">
+  <a routerLink="/" class="brand">
+    <span>EC</span>
+    <strong>Ecommerce</strong>
+  </a>
+
+  <nav aria-label="Main navigation">
+    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Products</a>
+    <a routerLink="/cart" routerLinkActive="active">Cart {{ cartService.items().length }}</a>
+    @if (authService.isLoggedIn()) {
+      <a routerLink="/manage/products" routerLinkActive="active">Manage</a>
+      <a routerLink="/orders" routerLinkActive="active">Orders</a>
+      <button type="button" (click)="logout()">Logout</button>
+    } @else {
+      <a routerLink="/login" routerLinkActive="active">Login</a>
+    }
+  </nav>
+</header>
+
 <router-outlet />

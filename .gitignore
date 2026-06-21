@@ -56,6 +56,7 @@ bin/
 obj/
 *.user
 *.suo
+*.db
 
 # Angular / Node
 node_modules/

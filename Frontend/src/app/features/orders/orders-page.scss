@@ -43,6 +43,10 @@ h1 {
   text-decoration: none;
 }
 
+.order-card header > div:first-child {
+  max-width: 560px;
+}
+
 .orders-list {
   display: grid;
   gap: 16px;

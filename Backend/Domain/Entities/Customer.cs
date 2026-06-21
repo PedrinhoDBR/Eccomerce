@@ -5,7 +5,7 @@ namespace Ecommerce.Domain.Entities;
 /// </summary>
 public sealed class Customer
 {
-    public Customer(string fullName, string email)
+    public Customer(string fullName, string email, string address, string phone)
     {
         if (string.IsNullOrWhiteSpace(fullName))
         {
@@ -17,12 +17,26 @@ public sealed class Customer
             throw new ArgumentException("Enter a valid email address.", nameof(email));
         }
 
+        if (string.IsNullOrWhiteSpace(address))
+        {
+            throw new ArgumentException("The delivery address is required.", nameof(address));
+        }
+
+        if (string.IsNullOrWhiteSpace(phone))
+        {
+            throw new ArgumentException("The contact phone is required.", nameof(phone));
+        }
+
         Id = Guid.NewGuid();
         FullName = fullName.Trim();
         Email = email.Trim().ToLowerInvariant();
+        Address = address.Trim();
+        Phone = phone.Trim();
     }
 
     public Guid Id { get; }
     public string FullName { get; }
     public string Email { get; }
+    public string Address { get; }
+    public string Phone { get; }
 }

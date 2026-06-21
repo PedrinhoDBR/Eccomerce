@@ -1,0 +1,72 @@
+<main class="shell">
+  <section class="page-heading">
+    <div>
+      <p class="eyebrow">Admin</p>
+      <h1>Manage products</h1>
+      <p>Create, edit, and retire catalog products.</p>
+    </div>
+  </section>
+
+  @if (error()) {
+    <section class="alert">{{ error() }}</section>
+  }
+
+  @if (successMessage()) {
+    <section class="success">{{ successMessage() }}</section>
+  }
+
+  <section class="layout">
+    <form class="product-form" (ngSubmit)="save()">
+      <h2>{{ form().id ? 'Edit product' : 'New product' }}</h2>
+      <label>
+        Name
+        <input name="name" [ngModel]="form().name" (ngModelChange)="updateField('name', $event)" required />
+      </label>
+      <label>
+        Description
+        <textarea name="description" rows="4" [ngModel]="form().description" (ngModelChange)="updateField('description', $event)" required></textarea>
+      </label>
+      <div class="split">
+        <label>
+          Price
+          <input name="price" type="number" min="0" step="0.01" [ngModel]="form().price" (ngModelChange)="updateField('price', $event)" required />
+        </label>
+        <label>
+          Stock
+          <input name="stockQuantity" type="number" min="0" [ngModel]="form().stockQuantity" (ngModelChange)="updateField('stockQuantity', $event)" required />
+        </label>
+      </div>
+      <div class="actions">
+        <button type="submit">{{ form().id ? 'Save changes' : 'Create product' }}</button>
+        @if (form().id) {
+          <button type="button" class="ghost" (click)="cancelEdit()">Cancel</button>
+        }
+      </div>
+    </form>
+
+    <section class="products-panel">
+      @if (loading()) {
+        <app-empty-state title="Loading products" message="Waiting for the backend response." />
+      } @else if (products().length === 0) {
+        <app-empty-state title="No products" message="Create the first product for the catalog." />
+      } @else {
+        <div class="table">
+          @for (product of products(); track product.id) {
+            <article>
+              <div>
+                <strong>{{ product.name }}</strong>
+                <span>{{ product.description }}</span>
+              </div>
+              <span>{{ product.price | currency }}</span>
+              <span>{{ product.stockQuantity }} stock</span>
+              <div class="row-actions">
+                <button type="button" class="ghost" (click)="edit(product)">Edit</button>
+                <button type="button" class="danger" (click)="delete(product)">Delete</button>
+              </div>
+            </article>
+          }
+        </div>
+      }
+    </section>
+  </section>
+</main>

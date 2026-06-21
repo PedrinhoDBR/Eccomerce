@@ -6,5 +6,7 @@ export interface CheckoutItemRequest {
 export interface CheckoutRequest {
   customerName: string;
   customerEmail: string;
+  address: string;
+  phone: string;
   items: CheckoutItemRequest[];
 }

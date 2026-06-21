@@ -22,6 +22,8 @@ public sealed class InMemoryProductRepository : IProductRepository
 
     public Product? GetById(Guid id) => _products.FirstOrDefault(product => product.Id == id);
 
+    public void Add(Product product) => _products.Add(product);
+
     public void Update(Product product)
     {
         var index = _products.FindIndex(current => current.Id == product.Id);
@@ -33,4 +35,6 @@ public sealed class InMemoryProductRepository : IProductRepository
 
         _products[index] = product;
     }
+
+    public void Delete(Guid id) => _products.RemoveAll(product => product.Id == id);
 }

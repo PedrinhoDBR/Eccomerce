@@ -1,5 +1,6 @@
 using Ecommerce.Application.Contracts;
 using Ecommerce.Contracts.Responses;
+using Ecommerce.Infrastructure.Security;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Ecommerce.Controllers;
@@ -16,6 +17,7 @@ public sealed class OrdersController : ControllerBase
     }
 
     [HttpGet]
+    [ServiceFilter(typeof(AdminAuthorizationFilter))]
     public ActionResult<IReadOnlyCollection<OrderResponse>> GetAll()
     {
         var orders = _orderRepository

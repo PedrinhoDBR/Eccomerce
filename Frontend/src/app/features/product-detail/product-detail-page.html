@@ -1,0 +1,40 @@
+<main class="shell">
+  <a routerLink="/" class="back-link">Back to products</a>
+
+  @if (error()) {
+    <section class="alert">{{ error() }}</section>
+  }
+
+  @if (successMessage()) {
+    <section class="success">{{ successMessage() }}</section>
+  }
+
+  @if (loading()) {
+    <app-empty-state title="Loading product" message="Waiting for product details." />
+  } @else if (product(); as item) {
+    <section class="detail">
+      <div class="product-visual">{{ item.name.slice(0, 2).toUpperCase() }}</div>
+      <article>
+        <p class="eyebrow">Product detail</p>
+        <h1>{{ item.name }}</h1>
+        <p>{{ item.description }}</p>
+
+        <dl>
+          <div>
+            <dt>Price</dt>
+            <dd>{{ item.price | currency }}</dd>
+          </div>
+          <div>
+            <dt>Stock</dt>
+            <dd>{{ item.stockQuantity }} available</dd>
+          </div>
+        </dl>
+
+        <div class="actions">
+          <button type="button" (click)="addToCart(item)">Add to cart</button>
+          <a routerLink="/cart">Go to cart</a>
+        </div>
+      </article>
+    </section>
+  }
+</main>

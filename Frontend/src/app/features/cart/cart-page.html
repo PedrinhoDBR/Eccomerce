@@ -1,0 +1,71 @@
+<main class="shell">
+  <section class="page-heading">
+    <div>
+      <p class="eyebrow">Checkout</p>
+      <h1>Your cart</h1>
+      <p>Confirm the items and add delivery contact details.</p>
+    </div>
+    <a routerLink="/" class="nav-link">Continue shopping</a>
+  </section>
+
+  @if (error()) {
+    <section class="alert">{{ error() }}</section>
+  }
+
+  @if (successMessage()) {
+    <section class="success">{{ successMessage() }}</section>
+  }
+
+  @if (cartItems().length === 0) {
+    <app-empty-state title="Empty cart" message="Add products to start a checkout." />
+  } @else {
+    <section class="layout">
+      <div class="cart-list">
+        @for (item of cartItems(); track item.product.id) {
+          <article class="cart-item">
+            <div>
+              <strong>{{ item.product.name }}</strong>
+              <span>{{ item.product.price | currency }}</span>
+            </div>
+            <input
+              type="number"
+              min="1"
+              [max]="item.product.stockQuantity"
+              [value]="item.quantity"
+              (input)="updateQuantity(item.product.id, $event)"
+              aria-label="Quantity"
+            />
+            <button type="button" class="ghost" (click)="removeFromCart(item.product.id)">Remove</button>
+          </article>
+        }
+      </div>
+
+      <aside class="checkout-panel">
+        <div class="total-row">
+          <span>Total</span>
+          <strong>{{ cartTotal() | currency }}</strong>
+        </div>
+
+        <form class="checkout-form" (ngSubmit)="checkout()">
+          <label>
+            Full name
+            <input name="customerName" [ngModel]="customerName()" (ngModelChange)="customerName.set($event)" required />
+          </label>
+          <label>
+            Email
+            <input name="customerEmail" type="email" [ngModel]="customerEmail()" (ngModelChange)="customerEmail.set($event)" required />
+          </label>
+          <label>
+            Address
+            <textarea name="address" [ngModel]="address()" (ngModelChange)="address.set($event)" required rows="3"></textarea>
+          </label>
+          <label>
+            Contact phone
+            <input name="phone" [ngModel]="phone()" (ngModelChange)="phone.set($event)" required />
+          </label>
+          <button type="submit">Place order</button>
+        </form>
+      </aside>
+    </section>
+  }
+</main>

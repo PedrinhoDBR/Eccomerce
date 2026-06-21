@@ -1,11 +1,12 @@
 <main class="shell">
-  <header class="topbar">
+  <section class="page-heading">
     <div>
-      <p class="eyebrow">E-commerce</p>
-      <h1>Storefront</h1>
+      <p class="eyebrow">Catalog</p>
+      <h1>Products ready to ship</h1>
+      <p>Browse the catalog, open a product for details, or add it directly to your cart.</p>
     </div>
-    <a routerLink="/orders" class="nav-link">Orders</a>
-  </header>
+    <a routerLink="/cart" class="nav-link">View cart</a>
+  </section>
 
   @if (error()) {
     <section class="alert">{{ error() }}</section>
@@ -15,81 +16,28 @@
     <section class="success">{{ successMessage() }}</section>
   }
 
-  <section class="layout">
-    <section class="catalog">
-      <div class="section-heading">
-        <h2>Products</h2>
-        <span>{{ products().length }} available</span>
-      </div>
-
-      @if (loading()) {
-        <app-empty-state title="Loading products" message="Waiting for the backend response." />
-      } @else if (products().length === 0) {
-        <app-empty-state title="No products" message="The catalog is empty right now." />
-      } @else {
-        <div class="product-grid">
-          @for (product of products(); track product.id) {
-            <article class="product-card">
-              <div>
-                <h3>{{ product.name }}</h3>
-                <p>{{ product.description }}</p>
-              </div>
-              <div class="product-meta">
-                <strong>{{ product.price | currency }}</strong>
-                <span>{{ product.stockQuantity }} in stock</span>
-              </div>
-              <button type="button" (click)="addToCart(product)">Add to cart</button>
-            </article>
-          }
-        </div>
+  @if (loading()) {
+    <app-empty-state title="Loading products" message="Waiting for the backend response." />
+  } @else if (products().length === 0) {
+    <app-empty-state title="No products" message="The catalog is empty right now." />
+  } @else {
+    <section class="product-grid" aria-label="Products">
+      @for (product of products(); track product.id) {
+        <article class="product-card">
+          <a [routerLink]="['/products', product.id]" class="product-link">
+            <span class="product-visual">{{ product.name.slice(0, 2).toUpperCase() }}</span>
+            <span>
+              <h2>{{ product.name }}</h2>
+              <p>{{ product.description }}</p>
+            </span>
+          </a>
+          <div class="product-meta">
+            <strong>{{ product.price | currency }}</strong>
+            <span>{{ product.stockQuantity }} in stock</span>
+          </div>
+          <button type="button" (click)="addToCart(product)">Add to cart</button>
+        </article>
       }
     </section>
-
-    <aside class="checkout-panel">
-      <div class="section-heading">
-        <h2>Cart</h2>
-        <span>{{ cartItems().length }} items</span>
-      </div>
-
-      @if (cartItems().length === 0) {
-        <app-empty-state title="Empty cart" message="Add products to start a checkout." />
-      } @else {
-        <div class="cart-list">
-          @for (item of cartItems(); track item.product.id) {
-            <div class="cart-item">
-              <div>
-                <strong>{{ item.product.name }}</strong>
-                <span>{{ item.product.price | currency }}</span>
-              </div>
-              <input
-                type="number"
-                min="1"
-                [max]="item.product.stockQuantity"
-                [value]="item.quantity"
-                (input)="updateQuantity(item.product.id, $event)"
-              />
-              <button type="button" class="ghost" (click)="removeFromCart(item.product.id)">Remove</button>
-            </div>
-          }
-        </div>
-
-        <div class="total-row">
-          <span>Total</span>
-          <strong>{{ cartTotal() | currency }}</strong>
-        </div>
-
-        <form class="checkout-form" (ngSubmit)="checkout()">
-          <label>
-            Full name
-            <input name="customerName" [ngModel]="customerName()" (ngModelChange)="customerName.set($event)" required />
-          </label>
-          <label>
-            Email
-            <input name="customerEmail" type="email" [ngModel]="customerEmail()" (ngModelChange)="customerEmail.set($event)" required />
-          </label>
-          <button type="submit">Checkout</button>
-        </form>
-      }
-    </aside>
-  </section>
+  }
 </main>

@@ -1,0 +1,23 @@
+<main class="auth-shell">
+  <section>
+    <p class="eyebrow">Admin</p>
+    <h1>Login</h1>
+    <p>Access product management and customer orders.</p>
+  </section>
+
+  <form (ngSubmit)="login()">
+    @if (error()) {
+      <div class="alert">{{ error() }}</div>
+    }
+
+    <label>
+      Username
+      <input name="username" [ngModel]="username()" (ngModelChange)="username.set($event)" autocomplete="username" required />
+    </label>
+    <label>
+      Password
+      <input name="password" type="password" [ngModel]="password()" (ngModelChange)="password.set($event)" autocomplete="current-password" required />
+    </label>
+    <button type="submit">Sign in</button>
+  </form>
+</main>
