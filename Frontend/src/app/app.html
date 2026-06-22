@@ -14,6 +14,22 @@
     } @else {
       <a routerLink="/login" routerLinkActive="active">Login</a>
     }
+    <div class="theme-switch" aria-label="Theme">
+      <button
+        type="button"
+        [class.selected]="themeService.mode() === 'light'"
+        (click)="setTheme('light')"
+      >
+        Light
+      </button>
+      <button
+        type="button"
+        [class.selected]="themeService.mode() === 'dark'"
+        (click)="setTheme('dark')"
+      >
+        Dark
+      </button>
+    </div>
   </nav>
 </header>
 

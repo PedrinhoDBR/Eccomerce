@@ -10,7 +10,7 @@
 }
 
 .eyebrow {
-  color: #0f766e;
+  color: var(--accent);
   font-size: 0.78rem;
   font-weight: 800;
   letter-spacing: 0;
@@ -29,13 +29,13 @@ h1 {
 }
 
 section p:not(.eyebrow) {
-  color: #667085;
+  color: var(--muted);
   margin-top: 14px;
 }
 
 form {
-  background: #ffffff;
-  border: 1px solid #d7dde5;
+  background: var(--surface);
+  border: 1px solid var(--border);
   border-radius: 8px;
   display: grid;
   gap: 16px;
@@ -43,33 +43,33 @@ form {
 }
 
 label {
-  color: #344054;
+  color: var(--muted-strong);
   display: grid;
   gap: 6px;
   font-weight: 800;
 }
 
 input {
-  border: 1px solid #c7d0db;
+  border: 1px solid var(--border-strong);
   border-radius: 6px;
   padding: 11px;
 }
 
 button {
-  background: #0f766e;
+  background: var(--accent);
   border: 0;
   border-radius: 8px;
-  color: #ffffff;
+  color: var(--on-accent);
   cursor: pointer;
   font-weight: 800;
   padding: 12px 16px;
 }
 
 .alert {
-  background: #fff4f3;
-  border: 1px solid #ffb4ab;
+  background: var(--alert-bg);
+  border: 1px solid var(--alert-border);
   border-radius: 8px;
-  color: #9f1d1d;
+  color: var(--alert-text);
   padding: 12px 14px;
 }
 

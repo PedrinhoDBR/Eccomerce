@@ -49,4 +49,8 @@ export class ProductDetailPage implements OnInit {
     this.cartService.addProduct(product);
     this.successMessage.set(`${product.name} was added to your cart.`);
   }
+
+  protected imageUrl(product: Product): string {
+    return this.productService.imageUrl(product);
+  }
 }

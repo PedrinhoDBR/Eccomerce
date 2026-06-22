@@ -17,7 +17,7 @@
 }
 
 .eyebrow {
-  color: #0f766e;
+  color: var(--accent);
   font-size: 0.78rem;
   font-weight: 800;
   letter-spacing: 0;
@@ -37,16 +37,16 @@ h1 {
 }
 
 .page-heading p {
-  color: #667085;
+  color: var(--muted);
   margin-top: 10px;
 }
 
 .nav-link,
 button {
-  background: #0f766e;
+  background: var(--accent);
   border: 0;
   border-radius: 8px;
-  color: #ffffff;
+  color: var(--on-accent);
   cursor: pointer;
   font-weight: 800;
   padding: 11px 16px;
@@ -62,8 +62,8 @@ button {
 .product-card,
 .alert,
 .success {
-  background: #ffffff;
-  border: 1px solid #d7dde5;
+  background: var(--surface);
+  border: 1px solid var(--border);
   border-radius: 8px;
 }
 
@@ -81,21 +81,18 @@ button {
 }
 
 .product-visual {
-  align-items: center;
   aspect-ratio: 16 / 10;
-  background: linear-gradient(135deg, #dff7ef, #f5f7fb);
-  border: 1px solid #cce5dc;
+  background: linear-gradient(135deg, var(--accent-soft), var(--surface-muted));
+  border: 1px solid var(--border);
   border-radius: 8px;
-  color: #0f766e;
-  display: flex;
-  font-size: 2rem;
-  font-weight: 900;
-  justify-content: center;
+  display: block;
+  object-fit: cover;
+  width: 100%;
 }
 
 .product-card p,
 .product-meta span {
-  color: #667085;
+  color: var(--muted);
 }
 
 .product-card h2 {
@@ -110,15 +107,15 @@ button {
 }
 
 .alert {
-  background: #fff4f3;
-  border-color: #ffb4ab;
-  color: #9f1d1d;
+  background: var(--alert-bg);
+  border-color: var(--alert-border);
+  color: var(--alert-text);
 }
 
 .success {
-  background: #f0f9f4;
-  border-color: #9bd7b1;
-  color: #136c3f;
+  background: var(--success-bg);
+  border-color: var(--success-border);
+  color: var(--success-text);
 }
 
 @media (max-width: 680px) {

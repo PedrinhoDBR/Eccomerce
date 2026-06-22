@@ -13,7 +13,7 @@
     <app-empty-state title="Loading product" message="Waiting for product details." />
   } @else if (product(); as item) {
     <section class="detail">
-      <div class="product-visual">{{ item.name.slice(0, 2).toUpperCase() }}</div>
+      <img [src]="imageUrl(item)" [alt]="item.name" class="product-visual" />
       <article>
         <p class="eyebrow">Product detail</p>
         <h1>{{ item.name }}</h1>

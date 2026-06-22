@@ -57,9 +57,12 @@ obj/
 *.user
 *.suo
 *.db
+Backend/wwwroot/uploads/
 
 # Angular / Node
 node_modules/
 dist/
 .angular/
 npm-debug.log*
+
+Backend/wwwroot/uploads/

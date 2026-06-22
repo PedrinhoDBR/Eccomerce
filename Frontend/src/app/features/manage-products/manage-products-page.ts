@@ -1,11 +1,13 @@
 import { CommonModule, CurrencyPipe } from '@angular/common';
 import { Component, OnInit, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Observable, of } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 import { Product } from '../../core/models/product';
 import { ProductService } from '../../core/services/product.service';
 import { EmptyState } from '../../shared/components/empty-state/empty-state';
 
-type ProductForm = Omit<Product, 'id'> & { id?: string };
+type ProductForm = Omit<Product, 'id' | 'imagePath'> & { id?: string; imagePath?: string };
 
 const emptyForm: ProductForm = {
   name: '',
@@ -23,6 +25,8 @@ const emptyForm: ProductForm = {
 export class ManageProductsPage implements OnInit {
   protected readonly products = signal<Product[]>([]);
   protected readonly form = signal<ProductForm>({ ...emptyForm });
+  protected readonly selectedImage = signal<File | null>(null);
+  protected readonly selectedImagePreview = signal('');
   protected readonly loading = signal(true);
   protected readonly error = signal('');
   protected readonly successMessage = signal('');
@@ -35,12 +39,16 @@ export class ManageProductsPage implements OnInit {
 
   protected edit(product: Product): void {
     this.form.set({ ...product });
+    this.selectedImage.set(null);
+    this.selectedImagePreview.set('');
     this.successMessage.set('');
     this.error.set('');
   }
 
   protected cancelEdit(): void {
     this.form.set({ ...emptyForm });
+    this.selectedImage.set(null);
+    this.selectedImagePreview.set('');
   }
 
   protected save(): void {
@@ -57,10 +65,12 @@ export class ManageProductsPage implements OnInit {
           stockQuantity: Number(current.stockQuantity)
         });
 
-    request.subscribe({
+    this.saveImageAfterProduct(request).subscribe({
       next: () => {
         this.successMessage.set(current.id ? 'Product updated.' : 'Product created.');
         this.form.set({ ...emptyForm });
+        this.selectedImage.set(null);
+        this.selectedImagePreview.set('');
         this.loadProducts();
       },
       error: (response) => this.error.set(response.error || 'Unable to save product.')
@@ -85,6 +95,43 @@ export class ManageProductsPage implements OnInit {
       ...form,
       [field]: field === 'price' || field === 'stockQuantity' ? Number(value) : value
     }));
+  }
+
+  protected selectImage(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    const image = input.files?.[0] ?? null;
+    this.selectedImage.set(image);
+    this.selectedImagePreview.set(image ? URL.createObjectURL(image) : '');
+  }
+
+  protected imageUrl(product: Product): string {
+    return this.productService.imageUrl(product);
+  }
+
+  protected previewImagePath(): string {
+    if (this.selectedImagePreview()) {
+      return this.selectedImagePreview();
+    }
+
+    return this.form().imagePath
+      ? `${this.productService.imageUrl(this.form() as Product)}`
+      : this.productService.imageUrl({
+          id: '',
+          name: 'No image',
+          description: '',
+          price: 0,
+          stockQuantity: 0,
+          imagePath: '/images/NoImage.png'
+        });
+  }
+
+  private saveImageAfterProduct(request: Observable<Product>): Observable<Product> {
+    return request.pipe(
+      switchMap((product) => {
+        const image = this.selectedImage();
+        return image ? this.productService.uploadImage(product.id, image) : of(product);
+      })
+    );
   }
 
   private loadProducts(): void {

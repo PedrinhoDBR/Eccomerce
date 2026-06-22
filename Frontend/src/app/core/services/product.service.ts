@@ -20,7 +20,7 @@ export class ProductService {
     return this.http.get<Product>(`${environment.apiUrl}/products/${id}`);
   }
 
-  createProduct(product: Omit<Product, 'id'>): Observable<Product> {
+  createProduct(product: Omit<Product, 'id' | 'imagePath'>): Observable<Product> {
     return this.http.post<Product>(`${environment.apiUrl}/products`, product);
   }
 
@@ -35,5 +35,16 @@ export class ProductService {
 
   deleteProduct(productId: string): Observable<void> {
     return this.http.delete<void>(`${environment.apiUrl}/products/${productId}`);
+  }
+
+  uploadImage(productId: string, image: File): Observable<Product> {
+    const formData = new FormData();
+    formData.append('image', image);
+
+    return this.http.post<Product>(`${environment.apiUrl}/products/${productId}/image`, formData);
+  }
+
+  imageUrl(product: Product): string {
+    return `${environment.apiBaseUrl}${product.imagePath}`;
   }
 }

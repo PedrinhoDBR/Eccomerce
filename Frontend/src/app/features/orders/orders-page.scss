@@ -17,7 +17,7 @@
 }
 
 .eyebrow {
-  color: #667085;
+  color: var(--muted);
   font-size: 0.78rem;
   font-weight: 700;
   letter-spacing: 0;
@@ -35,9 +35,9 @@ h1 {
 }
 
 .nav-link {
-  background: #146c5c;
+  background: var(--accent-strong);
   border-radius: 8px;
-  color: #ffffff;
+  color: var(--on-accent);
   font-weight: 700;
   padding: 11px 16px;
   text-decoration: none;
@@ -54,8 +54,8 @@ h1 {
 
 .order-card,
 .alert {
-  background: #ffffff;
-  border: 1px solid #d7dde5;
+  background: var(--surface);
+  border: 1px solid var(--border);
   border-radius: 8px;
   padding: 18px;
 }
@@ -63,7 +63,7 @@ h1 {
 .order-card header span,
 .order-meta span,
 .items span {
-  color: #667085;
+  color: var(--muted);
 }
 
 .order-card header > div {
@@ -76,9 +76,9 @@ h1 {
 }
 
 .status {
-  background: #e9f6f2;
+  background: var(--accent-soft);
   border-radius: 999px;
-  color: #146c5c;
+  color: var(--accent-strong);
   display: inline-flex;
   font-size: 0.82rem;
   font-weight: 800;
@@ -87,16 +87,16 @@ h1 {
 }
 
 .items {
-  border-top: 1px solid #d7dde5;
+  border-top: 1px solid var(--border);
   display: grid;
   gap: 10px;
   padding-top: 14px;
 }
 
 .alert {
-  background: #fff4f3;
-  border-color: #ffb4ab;
-  color: #9f1d1d;
+  background: var(--alert-bg);
+  border-color: var(--alert-border);
+  color: var(--alert-text);
   margin-bottom: 18px;
 }
 

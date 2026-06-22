@@ -38,6 +38,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseCors("AngularClient");
+app.UseStaticFiles();
 app.MapControllers();
 
 app.Run();

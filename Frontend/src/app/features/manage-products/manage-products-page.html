@@ -18,6 +18,7 @@
   <section class="layout">
     <form class="product-form" (ngSubmit)="save()">
       <h2>{{ form().id ? 'Edit product' : 'New product' }}</h2>
+      <img [src]="previewImagePath()" alt="Product preview" class="form-preview" />
       <label>
         Name
         <input name="name" [ngModel]="form().name" (ngModelChange)="updateField('name', $event)" required />
@@ -36,6 +37,13 @@
           <input name="stockQuantity" type="number" min="0" [ngModel]="form().stockQuantity" (ngModelChange)="updateField('stockQuantity', $event)" required />
         </label>
       </div>
+      <label>
+        Product image
+        <input type="file" accept="image/png,image/jpeg,image/webp" (change)="selectImage($event)" />
+      </label>
+      @if (selectedImage(); as image) {
+        <p class="file-note">{{ image.name }}</p>
+      }
       <div class="actions">
         <button type="submit">{{ form().id ? 'Save changes' : 'Create product' }}</button>
         @if (form().id) {
@@ -53,6 +61,7 @@
         <div class="table">
           @for (product of products(); track product.id) {
             <article>
+              <img [src]="imageUrl(product)" [alt]="product.name" />
               <div>
                 <strong>{{ product.name }}</strong>
                 <span>{{ product.description }}</span>

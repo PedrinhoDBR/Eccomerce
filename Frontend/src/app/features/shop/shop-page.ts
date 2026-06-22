@@ -30,6 +30,10 @@ export class ShopPage implements OnInit {
     this.cartService.addProduct(product);
   }
 
+  protected imageUrl(product: Product): string {
+    return this.productService.imageUrl(product);
+  }
+
   private loadProducts(): void {
     this.loading.set(true);
 

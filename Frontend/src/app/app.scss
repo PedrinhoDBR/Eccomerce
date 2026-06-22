@@ -1,7 +1,7 @@
 .site-header {
   align-items: center;
-  background: rgba(255, 255, 255, 0.96);
-  border-bottom: 1px solid #dde3ea;
+  background: color-mix(in srgb, var(--surface) 94%, transparent);
+  border-bottom: 1px solid var(--border);
   display: flex;
   gap: 24px;
   justify-content: space-between;
@@ -14,7 +14,7 @@
 
 .brand {
   align-items: center;
-  color: #111827;
+  color: var(--text);
   display: inline-flex;
   gap: 10px;
   text-decoration: none;
@@ -22,9 +22,9 @@
 
 .brand span {
   align-items: center;
-  background: #0f766e;
+  background: var(--accent);
   border-radius: 8px;
-  color: #ffffff;
+  color: var(--on-accent);
   display: inline-flex;
   font-size: 0.82rem;
   font-weight: 900;
@@ -46,7 +46,7 @@ nav button {
   background: transparent;
   border: 0;
   border-radius: 8px;
-  color: #4b5563;
+  color: var(--muted-strong);
   cursor: pointer;
   font: inherit;
   font-weight: 700;
@@ -57,8 +57,28 @@ nav button {
 nav a.active,
 nav a:hover,
 nav button:hover {
-  background: #e9f6f2;
-  color: #0f766e;
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.theme-switch {
+  background: var(--surface-muted);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  display: inline-flex;
+  gap: 2px;
+  padding: 3px;
+}
+
+.theme-switch button {
+  border-radius: 6px;
+  padding: 6px 9px;
+}
+
+.theme-switch button.selected {
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+  color: var(--accent);
 }
 
 @media (max-width: 700px) {

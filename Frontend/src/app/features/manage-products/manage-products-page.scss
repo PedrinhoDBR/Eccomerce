@@ -9,7 +9,7 @@
 }
 
 .eyebrow {
-  color: #0f766e;
+  color: var(--accent);
   font-size: 0.78rem;
   font-weight: 800;
   letter-spacing: 0;
@@ -29,7 +29,7 @@ h1 {
 
 .page-heading p,
 .table span {
-  color: #667085;
+  color: var(--muted);
 }
 
 .layout {
@@ -43,8 +43,8 @@ h1 {
 .products-panel,
 .alert,
 .success {
-  background: #ffffff;
-  border: 1px solid #d7dde5;
+  background: var(--surface);
+  border: 1px solid var(--border);
   border-radius: 8px;
 }
 
@@ -55,7 +55,7 @@ h1 {
 }
 
 label {
-  color: #344054;
+  color: var(--muted-strong);
   display: grid;
   gap: 6px;
   font-weight: 800;
@@ -63,11 +63,35 @@ label {
 
 input,
 textarea {
-  border: 1px solid #c7d0db;
+  border: 1px solid var(--border-strong);
   border-radius: 6px;
   min-width: 0;
   padding: 10px;
   resize: vertical;
+}
+
+input[type='file'] {
+  background: var(--surface-muted);
+}
+
+.form-preview {
+  aspect-ratio: 16 / 10;
+  background: var(--surface-muted);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  object-fit: cover;
+  width: 100%;
+}
+
+.file-note {
+  background: var(--surface-muted);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--muted-strong);
+  font-size: 0.9rem;
+  margin: 0;
+  overflow-wrap: anywhere;
+  padding: 10px;
 }
 
 .split {
@@ -84,23 +108,23 @@ textarea {
 }
 
 button {
-  background: #0f766e;
+  background: var(--accent);
   border: 0;
   border-radius: 8px;
-  color: #ffffff;
+  color: var(--on-accent);
   cursor: pointer;
   font-weight: 800;
   padding: 10px 14px;
 }
 
 .ghost {
-  background: #eef2f6;
-  color: #344054;
+  background: var(--button-muted);
+  color: var(--muted-strong);
 }
 
 .danger {
-  background: #fff0ef;
-  color: #b42318;
+  background: var(--danger-bg);
+  color: var(--danger-text);
 }
 
 .products-panel {
@@ -113,11 +137,19 @@ button {
 
 .table article {
   align-items: center;
-  border-bottom: 1px solid #eef2f6;
+  border-bottom: 1px solid var(--button-muted);
   display: grid;
   gap: 14px;
-  grid-template-columns: minmax(0, 1fr) 110px 90px auto;
+  grid-template-columns: 72px minmax(0, 1fr) 110px 90px auto;
   padding: 14px 6px;
+}
+
+.table article > img {
+  aspect-ratio: 1 / 1;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  object-fit: cover;
+  width: 72px;
 }
 
 .table article:last-child {
@@ -141,15 +173,15 @@ button {
 }
 
 .alert {
-  background: #fff4f3;
-  border-color: #ffb4ab;
-  color: #9f1d1d;
+  background: var(--alert-bg);
+  border-color: var(--alert-border);
+  color: var(--alert-text);
 }
 
 .success {
-  background: #f0f9f4;
-  border-color: #9bd7b1;
-  color: #136c3f;
+  background: var(--success-bg);
+  border-color: var(--success-border);
+  color: var(--success-text);
 }
 
 @media (max-width: 960px) {

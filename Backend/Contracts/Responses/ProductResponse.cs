@@ -8,4 +8,5 @@ public sealed record ProductResponse(
     string Name,
     string Description,
     decimal Price,
-    int StockQuantity);
+    int StockQuantity,
+    string ImagePath);

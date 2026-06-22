@@ -74,7 +74,8 @@ public sealed class LiteDbProductRepository : IProductRepository
             document.Name,
             document.Description,
             new Money(document.Price),
-            document.StockQuantity);
+            document.StockQuantity,
+            document.ImagePath);
     }
 
     private static ProductDocument ToDocument(Product product)
@@ -85,7 +86,8 @@ public sealed class LiteDbProductRepository : IProductRepository
             Name = product.Name,
             Description = product.Description,
             Price = product.Price.Amount,
-            StockQuantity = product.StockQuantity
+            StockQuantity = product.StockQuantity,
+            ImagePath = product.ImagePath
         };
     }
 
@@ -96,5 +98,6 @@ public sealed class LiteDbProductRepository : IProductRepository
         public string Description { get; set; } = string.Empty;
         public decimal Price { get; set; }
         public int StockQuantity { get; set; }
+        public string? ImagePath { get; set; }
     }
 }

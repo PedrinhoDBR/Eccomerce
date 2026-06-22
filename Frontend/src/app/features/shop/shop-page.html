@@ -25,7 +25,7 @@
       @for (product of products(); track product.id) {
         <article class="product-card">
           <a [routerLink]="['/products', product.id]" class="product-link">
-            <span class="product-visual">{{ product.name.slice(0, 2).toUpperCase() }}</span>
+            <img [src]="imageUrl(product)" [alt]="product.name" class="product-visual" />
             <span>
               <h2>{{ product.name }}</h2>
               <p>{{ product.description }}</p>

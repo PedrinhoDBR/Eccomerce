@@ -7,7 +7,7 @@ namespace Ecommerce.Domain.Entities;
 /// </summary>
 public sealed class Product
 {
-    public Product(Guid id, string name, string description, Money price, int stockQuantity)
+    public Product(Guid id, string name, string description, Money price, int stockQuantity, string? imagePath = null)
     {
         if (string.IsNullOrWhiteSpace(name))
         {
@@ -24,6 +24,7 @@ public sealed class Product
         Description = description.Trim();
         Price = price;
         StockQuantity = stockQuantity;
+        ImagePath = string.IsNullOrWhiteSpace(imagePath) ? null : imagePath.Trim();
     }
 
     public Guid Id { get; }
@@ -31,6 +32,7 @@ public sealed class Product
     public string Description { get; }
     public Money Price { get; }
     public int StockQuantity { get; private set; }
+    public string? ImagePath { get; }
 
     public bool HasStock(int quantity) => quantity > 0 && StockQuantity >= quantity;
 

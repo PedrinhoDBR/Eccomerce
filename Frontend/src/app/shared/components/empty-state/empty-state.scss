@@ -1,7 +1,7 @@
 .empty-state {
-  border: 1px dashed #aab4c0;
+  border: 1px dashed var(--border-strong);
   border-radius: 8px;
-  color: #526071;
+  color: var(--muted-strong);
   display: grid;
   gap: 6px;
   min-height: 120px;
@@ -11,6 +11,6 @@
 }
 
 .empty-state strong {
-  color: #1f2937;
+  color: var(--text);
   font-size: 1rem;
 }

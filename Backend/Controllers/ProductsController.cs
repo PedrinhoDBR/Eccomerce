@@ -13,13 +13,28 @@ namespace Ecommerce.Controllers;
 [Route("api/products")]
 public sealed class ProductsController : ControllerBase
 {
+    private static readonly HashSet<string> AllowedImageExtensions = new(StringComparer.OrdinalIgnoreCase)
+    {
+        ".jpg",
+        ".jpeg",
+        ".png",
+        ".webp"
+    };
+
+    private const long MaxImageSizeInBytes = 5 * 1024 * 1024;
+
     private readonly CatalogService _catalogService;
     private readonly IProductRepository _productRepository;
+    private readonly IWebHostEnvironment _environment;
 
-    public ProductsController(CatalogService catalogService, IProductRepository productRepository)
+    public ProductsController(
+        CatalogService catalogService,
+        IProductRepository productRepository,
+        IWebHostEnvironment environment)
     {
         _catalogService = catalogService;
         _productRepository = productRepository;
+        _environment = environment;
     }
 
     [HttpGet]
@@ -32,7 +47,8 @@ public sealed class ProductsController : ControllerBase
                 product.Name,
                 product.Description,
                 product.Price.Amount,
-                product.StockQuantity))
+                product.StockQuantity,
+                product.ImagePath ?? "/images/NoImage.png"))
             .ToList()
             .AsReadOnly();
 
@@ -94,7 +110,9 @@ public sealed class ProductsController : ControllerBase
     {
         try
         {
-            if (_productRepository.GetById(id) is null)
+            var existingProduct = _productRepository.GetById(id);
+
+            if (existingProduct is null)
             {
                 return NotFound();
             }
@@ -104,7 +122,8 @@ public sealed class ProductsController : ControllerBase
                 request.Name,
                 request.Description,
                 new Money(request.Price),
-                request.StockQuantity);
+                request.StockQuantity,
+                existingProduct.ImagePath);
 
             _productRepository.Update(product);
             return Ok(ToResponse(product));
@@ -123,6 +142,68 @@ public sealed class ProductsController : ControllerBase
         return NoContent();
     }
 
+    [HttpPost("{id:guid}/image")]
+    [ServiceFilter(typeof(AdminAuthorizationFilter))]
+    [RequestSizeLimit(MaxImageSizeInBytes)]
+    public async Task<ActionResult<ProductResponse>> UploadImage(Guid id, [FromForm] IFormFile image)
+    {
+        var product = _productRepository.GetById(id);
+
+        if (product is null)
+        {
+            return NotFound();
+        }
+
+        if (image.Length <= 0)
+        {
+            return BadRequest("Select an image to upload.");
+        }
+
+        if (image.Length > MaxImageSizeInBytes)
+        {
+            return BadRequest("Image must be 5 MB or smaller.");
+        }
+
+        var extension = Path.GetExtension(image.FileName);
+
+        if (!AllowedImageExtensions.Contains(extension))
+        {
+            return BadRequest("Only JPG, PNG, and WEBP images are allowed.");
+        }
+
+        var contentType = image.ContentType.ToLowerInvariant();
+
+        if (!contentType.StartsWith("image/"))
+        {
+            return BadRequest("The uploaded file must be an image.");
+        }
+
+        var fileName = $"{id:N}-{Guid.NewGuid():N}{extension.ToLowerInvariant()}";
+        var webRootPath = _environment.WebRootPath ?? Path.Combine(_environment.ContentRootPath, "wwwroot");
+        var uploadFolder = Path.Combine(webRootPath, "uploads", "products");
+        Directory.CreateDirectory(uploadFolder);
+
+        var filePath = Path.Combine(uploadFolder, fileName);
+
+        await using (var stream = System.IO.File.Create(filePath))
+        {
+            await image.CopyToAsync(stream);
+        }
+
+        var imagePath = $"/uploads/products/{fileName}";
+        var updatedProduct = new Product(
+            product.Id,
+            product.Name,
+            product.Description,
+            product.Price,
+            product.StockQuantity,
+            imagePath);
+
+        _productRepository.Update(updatedProduct);
+
+        return Ok(ToResponse(updatedProduct));
+    }
+
     private static ProductResponse ToResponse(Product product)
     {
         return new ProductResponse(
@@ -130,6 +211,7 @@ public sealed class ProductsController : ControllerBase
             product.Name,
             product.Description,
             product.Price.Amount,
-            product.StockQuantity);
+            product.StockQuantity,
+            product.ImagePath ?? "/images/NoImage.png");
     }
 }
